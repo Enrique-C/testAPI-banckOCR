@@ -15,9 +15,9 @@ public class TxtFileReader {
 
             scanner.close();
         } catch (Exception e) {
+            characters = null;
             e.printStackTrace();
         }
-
         return characters;
     }
 }

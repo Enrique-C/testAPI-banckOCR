@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Decoder {
 
@@ -45,37 +47,23 @@ public class Decoder {
     }
 
     private int analyzeStringDigit(String digit) {
-        int result = 0;
-        switch (digit) {
-            case "     |  |   ":
-                result = 1;
-                break;
-            case " _  _||_    ":
-                result = 2;
-                break;
-            case " _  _| _|   ":
-                result = 3;
-                break;
-            case "   |_|  |   ":
-                result = 4;
-                break;
-            case " _ |_  _|   ":
-                result = 5;
-                break;
-            case " _ |_ |_|   ":
-                result = 6;
-                break;
-            case " _   |  |   ":
-                result = 7;
-                break;
-            case " _ |_||_|   ":
-                result = 8;
-                break;
-            case " _ |_| _|   ":
-                result = 9;
-                break;
+        Map<Integer,String> stringDigit = new HashMap<Integer,String>();
+        stringDigit.put(1,"     |  |   ");
+        stringDigit.put(2," _  _||_    ");
+        stringDigit.put(3," _  _| _|   ");
+        stringDigit.put(4,"   |_|  |   ");
+        stringDigit.put(5," _ |_  _|   ");
+        stringDigit.put(6," _ |_ |_|   ");
+        stringDigit.put(7," _   |  |   ");
+        stringDigit.put(8," _ |_||_|   ");
+        stringDigit.put(9," _ |_| _|   ");
+
+        for(Map.Entry entry: stringDigit.entrySet()){
+            if(digit.equals(entry.getValue())){
+                return  entry.getKey().hashCode();
+            }
         }
-        return result;
+        return 0;
     }
 
     private void generateTextLines(String characters) {
